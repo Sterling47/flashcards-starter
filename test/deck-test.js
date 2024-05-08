@@ -8,7 +8,7 @@ describe('Deck', function() {
         const card = createCard(1, 'What allows you to define a set of related information using key-value pairs?', ['object', 'array', 'function'], 'object');
 
         const card2 = createCard(2, "What is a comma-separated list of related values?", ["array", "object", "function"], 'array')
-        const deck = createDeck()
+        const deck = createDeck([])
 
         expect(deck).to.deep.equal([])
     })
@@ -17,18 +17,17 @@ describe('Deck', function() {
         const card = createCard(1, 'What allows you to define a set of related information using key-value pairs?', ['object', 'array', 'function'], 'object');
 
         const card2 = createCard(2, "What is a comma-separated list of related values?", ["array", "object", "function"], 'array')
-        const deck = createDeck(card, card2)
+        const deck = createDeck([card, card2])
 
-        expect(deck.length).to.equal(2)
-        expect(deck).to.include(card)
-        expect(deck).to.include(card2)
+        expect(deck).to.deep.equal([card, card2])
     })
 
     it('should be able to count how many cards are in the deck', function(){
         const card = createCard(1, 'What allows you to define a set of related information using key-value pairs?', ['object', 'array', 'function'], 'object');
 
         const card2 = createCard(2, "What is a comma-separated list of related values?", ["array", "object", "function"], 'array')
-        const deck = createDeck(card, card2)
+        
+        const deck = createDeck([card, card2])
         const count = countCards(deck)
 
         expect(count).to.deep.equal(2)
