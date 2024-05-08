@@ -1,8 +1,7 @@
 
-function createDeck(...card) {
-    let newDeck = []
-    newDeck.push(...card)
-    return newDeck
+function createDeck(cards) {
+    
+    return cards || []
 }
 
 function countCards(deck){
