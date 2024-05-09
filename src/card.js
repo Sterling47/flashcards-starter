@@ -8,7 +8,7 @@ function createCard(id, question, answers, correctAnswer) {
 }
 
 function evaluateGuess(guess, card) {
-    if(guess === card.correctAnswer) {
+    if(guess === card) {
         return 'correct!'
     } else {
         return 'incorrect!'

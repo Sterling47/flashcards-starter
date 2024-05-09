@@ -1,6 +1,5 @@
 
 function createDeck(cards) {
-    
     return cards || []
 }
 
