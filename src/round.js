@@ -16,14 +16,38 @@ function takeTurn(guess, round) {
     const result = evaluateGuess(guess, correctAnswer)
 
     if (result === 'incorrect!') {
-        round.incorrectGuesses.push(round.currentCard.id)
+       round.incorrectGuesses.push(round.currentCard.id)
+       console.log(round.incorrectGuesses)
     } 
     round.turns++
     round.currentCard = round.deck[round.turns]
     return result
 }
+ 
+function calculatePercentage(round) {
+    console.log('round:', round)
+
+    if (round.turns === 0) {
+        return 0;
+    }
+
+    // Calculate the percentage of correct guesses
+    const totalQuestions = round.turns;
+    const incorrectGuesses = round.incorrectGuesses.length;
+    const correctAnswers = totalQuestions - incorrectGuesses;
+
+    const percentageRight = (correctAnswers / totalQuestions) * 100;
+    console.log('round:', round);
+    return percentageRight;
+}
+
+// function endRound(round) {
+
+// }
 
 module.exports = {
     createRound,
-    takeTurn
+    takeTurn,
+    calculatePercentage,
+    // endRound
 }
