@@ -1,6 +1,6 @@
 const chai = require('chai');
 const expect = chai.expect;
-const { createRound, takeTurn, calculatePercentage } = require('../src/round');
+const { createRound, takeTurn, calculatePercentage, endRound } = require('../src/round');
 const { createDeck } = require('../src/deck');
 const { createCard } = require('../src/card');
 describe('round', function() {
@@ -25,7 +25,7 @@ describe('round', function() {
     it('should update turns value by 1 and return feedback', function (){
         const round = createRound(deck)
         takeTurn('object',round)
-
+        
         expect(round.turns).to.equal(1)
     })
 
@@ -67,6 +67,18 @@ describe('calculate Percentage', function() {
         const percentage = calculatePercentage(round)
         expect(percentage).to.equal(50)
     })
+})
 
-    
+describe('end round', function () {
+    it('it should end round and return a message', function() {
+        const card = createCard(1, 'What allows you to define a set of related information using key-value pairs?', ['object', 'array', 'function'], 'object');
+        const card2 = createCard(2, "What is a comma-separated list of related values?", ["array", "object", "function"], 'array')
+        const deck = createDeck([card, card2])
+        const round = createRound(deck)
+        takeTurn('object', round)
+        takeTurn('object', round)
+        const roundOver = endRound(round)
+
+        expect(roundOver).to.equal(`** Round over! ** You answered 50% of the questions correctly!`)
+    })
 })
